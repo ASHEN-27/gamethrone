@@ -1,0 +1,7 @@
+{
+"gamename":"MARIO",
+"gamecompany":"NINTENDO",
+"gameplatform":"GBA",
+"gameyear":"2012",
+"gamefeedback":"8 STAR"
+}

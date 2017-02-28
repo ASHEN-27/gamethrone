@@ -2,9 +2,52 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Gamethrone</title>
+<script src="js/jquery-3.1.1.min.js" ></script>
+<script src="js/jquery.dataTables.js" ></script>
+<script src="js/main.js" ></script>
+<script src="js/bootstrap.js" ></script>
+<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
 <body>
-surprise 
+
+<h1 style="color:#FFA500;text-align: center;">WELCOME TO GAMETHRONE</h1>
+<body background="pic/123.jpg">
+
+<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" style="color:#FFA500;" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+    <li role="presentation"><a  style="color:#FFA500;" href="#profile" aria-controls="profile" role="tab" data-toggle="tab">table</a></li>
+    <li role="presentation"><a  style="color:#FFA500;" href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+    <li role="presentation"><a style="color:#FFA500;" href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home" style="color:#FFA500;">HOME!!!!!!</div>
+    <div role="tabpanel" class="tab-pane" id="profile">
+    <table id="game-table" style="background-color:#ff6f0f;" class="display">
+<thead>
+<tr>
+	<th style="text-align:left;">Gamename</th>
+	<th style="text-align:left;">Gamecompany</th>
+	<th style="text-align:left;">Platform</th>
+	<th style="text-align:left;">Year</th>
+	<th style="text-align:left;">Feedback</th>
+</tr>
+</thead>
+<tbody id="game-tbody"></tbody>
+</table></div>
+    <div role="tabpanel" class="tab-pane" id="messages"style="color:#FFA500;">Messages</div>
+    <div role="tabpanel" class="tab-pane" id="settings"style="color:#FFA500;">Settings</div>
+  </div>
+
+</div>
 </body>
+<footer>
+	<p style="color:#FFA500;float:bottom;/* position: relative; *//* width: 600px; *//* height: 400px; */position: absolute;top: 900px;left: 20px;width: 300px;height: 200px;">&copy; 2017 Luoquan Wei</p>
+  </footer>
 </html>
