@@ -3,33 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <title>Gamethrone</title>
-<script src="js/jquery-3.1.1.min.js" ></script>
-<script src="js/jquery.dataTables.js" ></script>
-<script src="js/main.js" ></script>
-<script src="js/bootstrap.js" ></script>
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/jquery.dataTables.js"></script>
+<script src="js/bootstrap.js"></script>
 <script src="js/underscore.js"></script>
 <script src="js/backbone.js"></script>
+<script src="js/models.js"></script>
+<script src="js/gameRowView.js"></script>
+<script src="js/gameTableView.js"></script>
+<script src="js/gameDetailsView.js"></script>
+<script src="js/addGameDetailsView.js"></script>
+<script src="js/app.js"></script>
+
 <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
 <body>
 
-<h1 style="color:#FFA500;text-align: center;">WELCOME TO GAMETHRONE</h1>
+	<h1 style="color: #FFA500; text-align: center;">WELCOME TO
+		GAMETHRONE</h1>
 <body background="pic/123.jpg">
 
-<div>
+	<div>
 
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#home" style="color:#FFA500;" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-    <li role="presentation"><a  style="color:#FFA500;" href="#profile" aria-controls="profile" role="tab" data-toggle="tab">table</a></li>
-    <li role="presentation"><a  style="color:#FFA500;" href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-    <li role="presentation"><a style="color:#FFA500;" href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
-  </ul>
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs" role="tablist">
+			<li role="presentation" class="active"><a href="#home"
+				style="color: #FFA500;" aria-controls="home" role="tab"
+				data-toggle="tab">Home</a></li>
+			<li role="presentation"><a style="color: #FFA500;"
+				href="#profile" aria-controls="profile" role="tab" data-toggle="tab">table</a></li>
+			<li role="presentation"><a style="color: #FFA500;"
+				href="#messages" aria-controls="messages" role="tab"
+				data-toggle="tab">Messages</a></li>
+			<li role="presentation"><a style="color: #FFA500;"
+				href="#settings" aria-controls="settings" role="tab"
+				data-toggle="tab">Settings</a></li>
+		</ul>
 
-  <!-- Tab panes -->
-  <script type="text/template"  id="template-laptop-details">
-<div class="modal fade" id="laptop-details-<%=lid%>" tabindex="-1"
+
+		<script type="text/template" id="gamebiao">
+    <td><%= gamename %></td>
+    <td><%= gamecompany %></td>
+    <td><%= gameplatform %></td>
+    <td><%= gameyear %></td>
+    <td><%= gamefeedback %></td>
+	<td>
+	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#games<%=gameid%>">
+	Edit
+	</button>
+	</td>
+</script>
+
+
+		<!-- Tab panes -->
+		<script type="text/template" id="gameneirong">
+<div class="modal fade" id="games<%=gameid%>" tabindex="-1"
 	role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -38,96 +67,34 @@
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title">Laptop Details</h4>
+				<h4 class="modal-title">Games Throne</h4>
 			</div>
 			<div class="modal-body">
 
 				<form class="form-horizontal">
-					<div class="input-group">
-						<span class="input-group-addon">ID</span> <input disabled
-							class="form-control col-sm-10" type="text"
-							id="laptop-id-<%= lid %>" value="<%= lid %>" />
+					<div class="form-group">
+  						<label for="gameid-<%= gameid %>">GAME ID</label>
+  						<input type="text" class="form-control" id="gameid-<%= gameid %>" value="<%= gameid %>" disabled>
 					</div>
-					<div class="input-group">
-						<span class="input-group-addon">Model</span> <input
-							class="form-control" type="text" id="laptop-model-<%= lid %>"
-							value="<%= lmodel %>" />
+                    <div class="form-group">
+  						<label for="gamename-<%= gameid %>">GAME NAME:</label>
+  						<input type="text" class="form-control" id="gamename-<%= gameid %>" value="<%= gamename %>">
 					</div>
-
-					<div class="input-group">
-						<span class="input-group-addon">Manufacturer</span> <input
-							class="form-control" type="text"
-							id="laptop-manufacturer-<%= lid %>" value="<%= manufacturer %>" />
+                    <div class="form-group">
+  						<label for="gamecompany-<%= gameid %>">GAME COMPANY:</label>
+  						<input type="text" class="form-control" id="gamecompany-<%= gameid %>" value="<%= gamecompany %>">
 					</div>
-
-					<div class="input-group">
-						<span class="input-group-addon">Adapter Power</span> 
-						<input
-							class="form-control" type="text" id="adapter-power-<%= lid %>"
-							value="<%= adapterPower %>" />
+                    <div class="form-group">
+  						<label for="gameplatform-<%= gameid %>">GAME PLATFORM:</label>
+  						<input type="text" class="form-control" id="gameplatform-<%= gameid %>" value="<%= gameplatform %>">
 					</div>
-
-					<div class="input-group">
-						<span class="input-group-addon">Keyboard Backlight</span>
-						<select class="form-control" id="kb-backlight-<%= lid %>" >
-						<% var KBLTypes=['monochrome','color','none']; %>
-						<% options(KBLTypes,kbBacklight) %>
-						</select>
+                    <div class="form-group">
+  						<label for="gameyear-<%= gameid %>">PUBLISH YEAR:</label>
+  						<input type="text" class="form-control" id="gameyear-<%= gameid %>" value="<%= gameyear %>">
 					</div>
-
-					<div class="input-group">
-						<span class="input-group-addon">CPU</span> <input
-							class="form-control" type="text" id="cpu-<%= lid %>"
-							value="<%= cpu %>" />
-					</div>
-
-					<div class="input-group">
-						<span class="input-group-addon">GPU</span> <input
-							class="form-control" type="text" id="gpu-<%= lid %>"
-							value="<%= gpu %>" />
-					</div>
-
-					<div class="input-group">
-						<span class="input-group-addon">Memory</span> <input
-							class="form-control" type="text" id="main-mem-<%= lid %>"
-							value="<%= mainMem %>" />
-					</div>
-
-					<div class="input-group">
-						<span class="input-group-addon">Screen Resolution</span> <input
-							class="form-control" type="text"
-							id="screen-resolution-<%= lid %>" value="<%= screenResolution %>" />
-					</div>
-
-					<div class="input-group">
-						<span class="input-group-addon">Screen Size</span> <input
-							class="form-control" type="text" id="screen-size-<%= lid %>"
-							value="<%= screenSize %>" />
-					</div>
-
-					<div class="input-group">
-						<span class="input-group-addon">Storage Size</span> <input
-							class="form-control" type="text" id="storage-size-<%= lid %>"
-							value="<%= storageSize %>" />
-					</div>
-
-					<div class="input-group">
-						<span class="input-group-addon">Storage Type</span> 
-						<select class="form-control" id="storage-type-<%= lid %>" >
-						<% options(['HDD','SSD'], storageType) %>
-						</select>
-					</div>
-
-					<div class="input-group">
-						<span class="input-group-addon">Video Memory</span> <input
-							class="form-control" type="text" id="video-mem-<%= lid %>"
-							value="<%= videoMem %>" />
-					</div>
-
-					<div class="input-group">
-						<span class="input-group-addon">Weight</span> <input
-							class="form-control" class="form-control" type="text"
-							id="weight-<%= lid %>" value="<%= weight %>" />
+                    <div class="form-group">
+  						<label for="gamefeedback-<%= gameid %>">GAME FEEDBACK:</label>
+  						<input type="text" class="form-control" id="gamefeedback-<%= gameid %>" value="<%= gamefeedback %>">
 					</div>
 				</form>
 				
@@ -144,28 +111,39 @@
 </div>
 <!-- /.modal --> 
 </script>
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="home" style="color:#FFA500;">HOME!!!!!!</div>
-    <div role="tabpanel" class="tab-pane" id="profile">
-    <table id="game-table" style="background-color:#ff6f0f;" class="display">
-<thead>
-<tr>
-	<th style="text-align:left;">Gamename</th>
-	<th style="text-align:left;">Gamecompany</th>
-	<th style="text-align:left;">Platform</th>
-	<th style="text-align:left;">Year</th>
-	<th style="text-align:left;">Feedback</th>
-</tr>
-</thead>
-<tbody id="game-tbody"></tbody>
-</table></div>
-    <div role="tabpanel" class="tab-pane" id="messages"style="color:#FFA500;">Messages</div>
-    <div role="tabpanel" class="tab-pane" id="settings"style="color:#FFA500;">Settings</div>
-  </div>
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="home"
+				style="color: #FFA500;">HOME!!!!!!</div>
+			<div role="tabpanel" class="tab-pane" id="profile">
+				<table id="game-table" style="background-color: #ff6f0f;"
+					class="display">
+					<thead>
+						<tr>
+							<th style="text-align: left;">Gamename</th>
+							<th style="text-align: left;">Gamecompany</th>
+							<th style="text-align: left;">Platform</th>
+							<th style="text-align: left;">Year</th>
+							<th style="text-align: left;">Feedback</th>
+							<th style="text-align: left;">Edit</th>
+						</tr>
+					</thead>
+					
+					<tbody id="game-tbody"></tbody>
+				</table>
+				<div style="text-align:center;"><a href="#" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#gamesXXXX">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;A&emsp;&emsp;&emsp;D&emsp;&emsp;&emsp;D&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a></div>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="messages"
+				style="color: #FFA500;">Messages</div>
+			<div role="tabpanel" class="tab-pane" id="settings"
+				style="color: #FFA500;">Settings</div>
+		</div>
 
-</div>
+	</div>
 </body>
 <footer>
-	<p style="color:#FFA500;float:bottom;/* position: relative; *//* width: 600px; *//* height: 400px; */position: absolute;top: 900px;left: 20px;width: 300px;height: 200px;">&copy; 2017 Luoquan Wei</p>
-  </footer>
+	<p
+		style="color: #FFA500; float: bottom; /* position: relative; */ /* width: 600px; */ /* height: 400px; */ position: absolute; top: 900px; left: 20px; width: 300px; height: 200px;">&copy;
+		2017 Luoquan Wei</p>
+</footer>
+<div id="kuangkuang"></div>
 </html>

@@ -5,14 +5,13 @@ var Game = Backbone.Model.extend({
     idAttribute:'gameid',
     defaults: {
     	"gameid": "",
-        "gamename": 0,
+        "gamename": "",
         "gamecompany": "",
         "gameplatform": "",
-        "gameyear": "none",
-        "gamefeedback": 0
+        "gameyear": "",
+        "gamefeedback": ""
     },
     initialize: function () {
-        // LOG
         console.log('Surprise!!!!');
     }
 });
