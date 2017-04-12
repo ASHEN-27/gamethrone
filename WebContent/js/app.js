@@ -7,7 +7,7 @@ $(document).ready(function(){
     			gamename:'X',
     			gamecompany:'X',
     			gameplatform:'X',
-    			gameyear:'X',
+    			gameyear:'0000',
     			gamefeedback:'X'})}).render());
 	gameList = new GameList();
 	gameList.fetch({
