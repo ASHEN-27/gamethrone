@@ -21,7 +21,7 @@ var GameTableView = Backbone.View.extend({
             $('#game-tbody').append(
             		new GameRowView({ model: games }).render());
             
-        });
+        },this);
         $('#game-table').DataTable();
     }
 });

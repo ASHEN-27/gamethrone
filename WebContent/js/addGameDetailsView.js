@@ -18,7 +18,9 @@ var AddGameDetailsView = Backbone.View.extend({
         this.model.save(gDetails, {
             success: function(games,yooooooo) {
             	gameList.add(yooooooo);
+            	console.log(yooooooo);
                 console.info('successfully added, id: '+yooooooo.gameid);
+                GameTableView = new GameTableView({collection: gameList});
                 $('#kuangkuang').append(
                 		new GameDetailsView({model: new Game(yooooooo)}).render());
                 gameTableView.renderTable();
